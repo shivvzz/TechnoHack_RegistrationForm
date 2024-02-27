@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        .container
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color:pink;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h1
+        {
+            color: black;
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .registrationForm {
+            justify-content: center;
+            align-items: center;
+            width: 1000px;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-family: sans-serif;
+            background-color: blueviolet;
+            padding: 20px;
+            color: black;
+        }
+        .registrationForm input,
+        .registrationForm select,
+        .registrationForm textarea
+        {
+            border: none;
+            padding: 5px;
+            margin-top: 16px;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        .registrationForm input:focus,
+        .registrationForm input:focus
+        {
+            box-shadow: 3px 3px 10px rgb(228,228,288),-3px -3px 10px rgb(224, 224, 224);
+        }
+
+        input[type="submit"]
+        {
+          width: 100%;
+          padding: 8px 0;
+          font-size: 20px;
+          color: rgb(44, 44, 44);
+          background-color: #60c136;
+          border-radius: 5px;
+        }
+        input[type="submit"]:hover 
+        {
+          box-shadow: 3px 3px 6px rgb(255, 214, 176);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <center><h1> College Registration Form </h1></center>
+    <form name="registration" class="registrationForm"  onsubmit="return validateForm()">
+        <table>
+            <tr>
+                <td><label for="fname"> First Name :</label></td>
+                <td><input type="text" id="fname" name="fname" required></td>
+                <td><span id="fnameError" class="error"></span></td> 
+            </tr>
+            <tr>
+                <td><label for="lname"> Last Name :</label></td>
+                <td><input type="text" id="lname" name="lname" required></td>
+                <td><span id="lnameError" class="error"></span></td> 
+            </tr>
+            <tr>
+                <td><label for="email">Email :</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+                <td><span id="emailError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label> Gender : </label></td>
+                <td>
+                    <input type="radio" value="Male" name="gender" id="genderMale" > Male
+                    <input type="radio" value="Female" name="gender" id="genderFemale" > Female 
+                    <input type="radio" value="Other" name="gender" id="genderOther" required> Other  
+                </td>
+                <td><span id="genderError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label>Phone No: </label></td>
+                <td>
+                    <input type="text" name="country_code" id="country_code" value="+91" size="2"/>
+                    <input type="number" name="phone" id="phone" size="10" required> 
+                </td>
+                <td><span id="phoneError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="course">Course :</label></td>
+                <td>
+                    <select required>  
+                        <option value="Course">Course</option>  
+                        <option value="BCA">BCA</option>  
+                        <option value="BBA">BBA</option>  
+                        <option value="B.Tech">B.Tech</option>  
+                        <option value="MBA">MBA</option>  
+                        <option value="MCA">MCA</option>  
+                        <option value="M.Tech">M.Tech</option>  
+                    </select>
+                </td>
+                <td><span id="courseError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td>Address :</td>
+                <td><textarea id="address" cols="80" rows="2" required></textarea>  </td>
+                <td><span id="addressError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="zipcode">Zip Code:</label></td>
+                <td><input type="number" name="zipcode" id="zipcode" required></td>
+                <td><span id="zipcodeError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="about">Previous Education :</label></td>
+                <td><textarea id="about" name="about" placeholder="Write about previous education..." required></textarea></td>
+                <td><span id="aboutError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="Password"> Password :</label></td>
+                <td><input type="password" id="password" name="password" required></td>
+                <td><span id="passwordError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Register"> </td>
+            </tr>  
+        </table>
+    </form>
+</div>
+<script>
+  function validateForm()
+  {
+      var fname = document.getElementById("fname").value;
+      var lname = document.getElementById("lname").value;
+      var email = document.getElementById("email").value;
+      var genderMale = document.getElementById("genderMale").checked;
+      var genderFemale = document.getElementById("genderFemale").checked;
+      var genderOther = document.getElementById("genderOther").checked;
+      var phone = document.getElementById("phone").value;
+      var course = document.getElementsByTagName("option")[document.getElementsByTagName("option").selectedIndex].value;
+      var address = document.getElementById("address").value;
+      var zipcode = document.getElementById("zipcode").value;
+      var about = document.getElementById("about").value;
+      var password = document.getElementById("Password").value;
+
+      document.getElementById("fnameError").innerText = "";
+      document.getElementById("lnameError").innerText = "";
+      document.getElementById("emailError").innerText = "";
+      document.getElementById("aboutError").innerText = "";
+      document.getElementById("courseError").innerText = "";
+      document.getElementById("genderError").innerText = "";
+      document.getElementById("phoneError").innerText = "";
+      document.getElementById("addressError").innerText = "";
+      document.getElementById("passwordError").innerText = "";
+      document.getElementById("zipcodeError").innerText = "";
+      document.getElementById("passwordError").innerText = "";
+
+      var isError = false;
+
+        if (fname === "") 
+        {
+          document.getElementById("fnameError").innerText = "First name is required";
+          isError = true;
+        }
+
+        if (lname === "") 
+        {
+          document.getElementById("lnameError").innerText = "Last name is required";
+          isError = true;
+        }
+
+        if (email === "")
+        {
+          document.getElementById("emailError").innerText = "Email is required";
+          isError = true;
+        }
+        else
+        {
+          var emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+          if (!emailRegex.test(email))
+          {
+              document.getElementById("emailError").innerText = "Invalid email format";
+              isError = true;
+          }
+        }
+
+        if (!genderMale && !genderFemale && !genderOther) {
+            displayError("genderError", "Please select a gender");
+            isError = true;
+        } else 
+        {
+            displayError("genderError", "");
+            isError = true;
+        }
+
+        if (password === "")
+        {
+          document.getElementById("passwordError").innerText = "Password is required";
+          isError = true;
+        }
+        else if (password.length < 8)
+        {
+          document.getElementById("passwordError").innerText = "Password must be at least 8 characters long";
+          isError = true;
+        }
+        if (course === "Course")
+        {
+            displayError("courseError", "Please select a course");
+            isError = true;
+        } 
+        else
+        {
+            displayError("courseError", "");
+            isError = true;
+        }
+
+        if (address.length === 0) 
+        {
+            displayError("addressError", "Address is required");
+            isError = true;
+        }
+        else
+        {
+            displayError("addressError", "");
+            isError = true;
+        }
+        if (zipcode.length !== 6) 
+        {
+            displayError("zipcodeError", "Invalid zipcode");
+            isError = true;
+        } 
+        else 
+        {
+            displayError("zipcodeError", "");
+            isError = true;
+        }
+        if (about.length === 0) 
+        {
+            displayError("aboutError", "Previous education details are required");
+            isValid = false;
+        } else 
+        {
+            displayError("aboutError", "");
+            isError = true;
+        }
+
+        if (password.length < 8) 
+        {
+            displayError("passwordError", "Password must be at least 8 characters long");
+            isError = true;
+        } else 
+        {
+            displayError("passwordError", "");
+            isError = true;
+        }
+
+        if (isError) 
+      {
+        return false;
+      }
+  }
+  </script>
+</body>
+</html>
